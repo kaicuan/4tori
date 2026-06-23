@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import appLogo from '/favicon.svg'
 import PWABadge from './PWABadge.tsx'
@@ -6,6 +6,13 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [message, setMessage] = useState("")
+
+  useEffect(() => {
+    fetch("/api/hello")
+      .then((res) => res.text())
+      .then(setMessage)
+  }, [])
 
   return (
     <>
@@ -18,6 +25,7 @@ function App() {
         </a>
       </div>
       <h1>4tori</h1>
+      <p>{message}</p>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

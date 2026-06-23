@@ -34,4 +34,7 @@ export default defineConfig({
       type: 'module',
     },
   })],
+  server: {
+    proxy: { '/api': `http://localhost:3000` },
+  },
 })
