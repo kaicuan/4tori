@@ -1,10 +1,10 @@
-import './PWABadge.css'
-
 import { useRegisterSW } from 'virtual:pwa-register/react'
+import { XIcon } from '@phosphor-icons/react'
+
+import { Item, ItemContent, ItemTitle, ItemDescription, ItemActions } from '@/components/ui/item'
+import { Button } from '@/components/ui/button'
 
 function PWABadge() {
-  // periodic sync is disabled, change the value to enable it, the period is in milliseconds
-// You can remove onRegisteredSW callback and registerPeriodicSync function
   const period = 0
 
   const {
@@ -32,31 +32,49 @@ function PWABadge() {
     setNeedRefresh(false)
   }
 
+  if (!offlineReady && !needRefresh) return null
+
   return (
-    <div className="PWABadge" role="alert" aria-labelledby="toast-message">
-      { (offlineReady || needRefresh)
-      && (
-        <div className="PWABadge-toast">
-          <div className="PWABadge-message">
-            { offlineReady
-              ? <span id="toast-message">App ready to work offline</span>
-              : <span id="toast-message">New content available, click on reload button to update.</span>}
-          </div>
-          <div className="PWABadge-buttons">
-            { needRefresh && <button className="PWABadge-toast-button" onClick={() => updateServiceWorker(true)}>Reload</button> }
-            <button className="PWABadge-toast-button" onClick={() => close()}>Close</button>
-          </div>
-        </div>
+    <Item variant="outline" className="fixed bottom-4 right-4 z-50 w-90 pr-1.5">
+      { needRefresh ? (
+        <ItemContent>
+          <ItemTitle>App Update</ItemTitle>
+          <ItemDescription>
+            New content available, click on reload button to update
+          </ItemDescription>
+        </ItemContent>
+      ) : (
+        <ItemContent>
+          <ItemTitle>Offline Ready!</ItemTitle>
+          <ItemDescription>
+            App is ready to work offline
+          </ItemDescription>
+        </ItemContent>
       )}
-    </div>
+      <ItemActions>
+        {needRefresh && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => updateServiceWorker(true)}
+          >
+            Reload
+          </Button>
+        )}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={close}
+        >
+          <XIcon size={14} weight="bold" />
+        </Button>
+      </ItemActions>
+    </Item>
   )
 }
 
 export default PWABadge
 
-/**
- * This function will register a periodic sync check every hour, you can modify the interval as needed.
- */
 function registerPeriodicSync(period: number, swUrl: string, r: ServiceWorkerRegistration) {
   if (period <= 0) return
 
