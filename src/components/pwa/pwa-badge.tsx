@@ -1,8 +1,7 @@
-import { useRegisterSW } from 'virtual:pwa-register/react'
-import { XIcon } from '@phosphor-icons/react'
-
-import { Item, ItemContent, ItemTitle, ItemDescription, ItemActions } from '@/components/ui/item'
 import { Button } from '@/components/ui/button'
+import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from '@/components/ui/item'
+import { XIcon } from '@phosphor-icons/react'
+import { useRegisterSW } from 'virtual:pwa-register/react'
 
 function PWABadge() {
   const period = 0

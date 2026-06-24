@@ -1,5 +1,11 @@
+
+import PWABadge from '@/components/pwa/pwa-badge'
+import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
-import PWABadge from './PWABadge.tsx'
+
+export const Route = createFileRoute('/')({
+  component: App,
+})
 
 function App() {
   const [message, setMessage] = useState("")
@@ -20,5 +26,3 @@ function App() {
     </main>
   )
 }
-
-export default App
