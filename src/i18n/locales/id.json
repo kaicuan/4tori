@@ -1,0 +1,9 @@
+{
+  "common": {
+    "refresh": "Muat Ulang",
+    "refreshing": "Memuat Ulang..."
+  },
+  "home": {
+    "error": "Terjadi kesalahan"
+  }
+}

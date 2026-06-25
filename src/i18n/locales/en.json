@@ -1,0 +1,9 @@
+{
+  "common": {
+    "refresh": "Refresh",
+    "refreshing": "Refreshing..."
+  },
+  "home": {
+    "error": "Something went wrong"
+  }
+}

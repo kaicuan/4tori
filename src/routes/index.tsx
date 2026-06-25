@@ -1,10 +1,10 @@
-
 import PWABadge from "@/components/pwa/pwa-badge";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
 import { useDemo, useUpdateDemo } from "@/features/demo";
+import { useTranslation } from "@/i18n/context";
 import { MinusIcon, PlusIcon } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -13,6 +13,7 @@ export const Route = createFileRoute("/")({
 })
 
 function App() {
+  const { t } = useTranslation();
   const { data, isPending, isFetching, refetch, error } = useDemo();
   const { mutate, isPending: updatePending } = useUpdateDemo();
 
@@ -20,7 +21,7 @@ function App() {
     <main className="flex min-h-dvh flex-col items-center justify-center gap-4 px-4">
       <div className="flex items-center gap-4">
         {error ? (
-          <p className="text-red-500">Something went wrong</p>
+          <p className="text-red-500">{t("home.error")}</p>
         ) : (
           <>
             {isPending ? (
@@ -61,10 +62,10 @@ function App() {
         {isFetching ? (
           <>
             <Spinner data-icon="inline-start" />
-            Refreshing...
+            {t("common.refreshing")}
           </>
         ) : (
-          "Refresh"
+          t("common.refresh")
         )}
       </Button>
       <PWABadge />

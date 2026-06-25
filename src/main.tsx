@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/theme-provider"
+import { I18nProvider } from "@/i18n/context"
 import "@/index.css"
 import { queryClient } from "@/lib/queryClient"
 import { routeTree } from "@/routeTree.gen"
@@ -24,12 +25,14 @@ if (!rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider
-          defaultTheme="dark"
-          storageKey="vite-ui-theme"
-        >
-          <RouterProvider router={router} />
-        </ThemeProvider>
+        <I18nProvider defaultLocale="id">
+          <ThemeProvider
+            defaultTheme="dark"
+            storageKey="vite-ui-theme"
+          >
+            <RouterProvider router={router} />
+          </ThemeProvider>
+        </I18nProvider>
       </QueryClientProvider>
     </StrictMode>
   )
