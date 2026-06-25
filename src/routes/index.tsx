@@ -1,14 +1,14 @@
 
-import PWABadge from '@/components/pwa/pwa-badge';
-import { Button } from '@/components/ui/button';
-import { ButtonGroup } from '@/components/ui/button-group';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Spinner } from '@/components/ui/spinner';
-import { useDemo, useUpdateDemo } from '@/features/demo';
-import { MinusIcon, PlusIcon } from '@phosphor-icons/react';
-import { createFileRoute } from '@tanstack/react-router';
+import PWABadge from "@/components/pwa/pwa-badge";
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Spinner } from "@/components/ui/spinner";
+import { useDemo, useUpdateDemo } from "@/features/demo";
+import { MinusIcon, PlusIcon } from "@phosphor-icons/react";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: App,
 })
 

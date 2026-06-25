@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { serve } from '@hono/node-server'
+import { serve } from "@hono/node-server"
 
 const app = new Hono().basePath("/api");
 

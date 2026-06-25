@@ -1,17 +1,17 @@
-const BASE_URL = '/api'
+const BASE_URL = "/api"
 
 export class ApiError extends Error {
   status: number
   info?: unknown
   constructor(message: string, status: number, info?: unknown) {
     super(message)
-    this.name = 'ApiError'
+    this.name = "ApiError"
     this.status = status
     this.info = info
   }
 }
 
-type RequestOptions = Omit<RequestInit, 'body'> & {
+type RequestOptions = Omit<RequestInit, "body"> & {
   body?: unknown
 }
 
@@ -20,7 +20,7 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
   const res = await fetch(`${BASE_URL}${path}`, {
     ...rest,
     headers: {
-      ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}),
+      ...(body !== undefined ? { "Content-Type": "application/json" } : {}),
       ...headers,
     },
     body: body !== undefined ? JSON.stringify(body) : undefined,
@@ -40,13 +40,13 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
 
 export const apiClient = {
   get: <T>(path: string, options?: RequestOptions) =>
-    request<T>(path, { ...options, method: 'GET' }),
+    request<T>(path, { ...options, method: "GET" }),
   post: <T>(path: string, body?: unknown, options?: RequestOptions) =>
-    request<T>(path, { ...options, method: 'POST', body }),
+    request<T>(path, { ...options, method: "POST", body }),
   put: <T>(path: string, body?: unknown, options?: RequestOptions) =>
-    request<T>(path, { ...options, method: 'PUT', body }),
+    request<T>(path, { ...options, method: "PUT", body }),
   patch: <T>(path: string, body?: unknown, options?: RequestOptions) =>
-    request<T>(path, { ...options, method: 'PATCH', body }),
+    request<T>(path, { ...options, method: "PATCH", body }),
   delete: <T>(path: string, options?: RequestOptions) =>
-    request<T>(path, { ...options, method: 'DELETE' }),
+    request<T>(path, { ...options, method: "DELETE" }),
 }

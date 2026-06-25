@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button'
-import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from '@/components/ui/item'
-import { XIcon } from '@phosphor-icons/react'
-import { useRegisterSW } from 'virtual:pwa-register/react'
+import { Button } from "@/components/ui/button"
+import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
+import { XIcon } from "@phosphor-icons/react"
+import { useRegisterSW } from "virtual:pwa-register/react"
 
 function PWABadge() {
   const period = 0
@@ -13,13 +13,13 @@ function PWABadge() {
   } = useRegisterSW({
     onRegisteredSW(swUrl, r) {
       if (period <= 0) return
-      if (r?.active?.state === 'activated') {
+      if (r?.active?.state === "activated") {
         registerPeriodicSync(period, swUrl, r)
       }
       else if (r?.installing) {
-        r.installing.addEventListener('statechange', (e) => {
+        r.installing.addEventListener("statechange", (e) => {
           const sw = e.target as ServiceWorker
-          if (sw.state === 'activated')
+          if (sw.state === "activated")
             registerPeriodicSync(period, swUrl, r)
         })
       }
@@ -78,14 +78,14 @@ function registerPeriodicSync(period: number, swUrl: string, r: ServiceWorkerReg
   if (period <= 0) return
 
   setInterval(async () => {
-    if ('onLine' in navigator && !navigator.onLine)
+    if ("onLine" in navigator && !navigator.onLine)
       return
 
     const resp = await fetch(swUrl, {
-      cache: 'no-store',
+      cache: "no-store",
       headers: {
-        'cache': 'no-store',
-        'cache-control': 'no-cache',
+        "cache": "no-store",
+        "cache-control": "no-cache",
       },
     })
 
