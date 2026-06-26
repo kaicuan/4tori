@@ -5,5 +5,12 @@
   },
   "home": {
     "error": "Terjadi kesalahan"
+  },
+  "status": {
+    "title": "Status Sistem",
+    "client": "Klien",
+    "server": "Server",
+    "database": "Database",
+    "fail": "GAGAL"
   }
 }

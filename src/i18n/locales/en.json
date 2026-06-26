@@ -5,5 +5,12 @@
   },
   "home": {
     "error": "Something went wrong"
+  },
+  "status": {
+    "title": "System Status",
+    "client": "Client",
+    "server": "Server",
+    "database": "Database",
+    "fail": "FAIL"
   }
 }
