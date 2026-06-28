@@ -2,14 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 
 import { apiClient } from "@/lib/apiClient"
-
-export type DemoResponse = {
-  count: number
-}
-
-export type DemoAction = {
-  action: "increment" | "decrement"
-}
+import type { DemoResponse, DemoAction } from "@4tori/shared"
 
 const DEMO_QUERY_KEY = ["demo"] as const
 
