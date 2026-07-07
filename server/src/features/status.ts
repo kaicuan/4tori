@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { sql } from "drizzle-orm";
+import { StatusResponse } from "@4tori/shared/schemas/status";
 import { db } from "../db";
 
 const app = new Hono();
@@ -16,7 +17,7 @@ app.get("/", async (c) => {
     dbMs = null;
     dbOk = false;
   }
-  return c.json({ dbMs, dbOk });
+  return c.json(StatusResponse.parse({ dbMs, dbOk }));
 });
 
 export default app;

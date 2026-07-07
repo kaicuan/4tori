@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 
 import { apiClient } from "@/lib/apiClient"
+import { StatusResponse } from "@4tori/shared/schemas/status"
 
 export type StatusData = {
   clientMs: number
@@ -15,7 +16,7 @@ export function useStatus() {
     queryKey: STATUS_QUERY_KEY,
     queryFn: async () => {
       const clientStart = performance.now()
-      const res = await apiClient.get<{ dbMs: number | null; dbOk: boolean }>("/status")
+      const res = await apiClient.get("/status", StatusResponse)
       const clientEnd = performance.now()
       return {
         clientMs: Math.round((clientEnd - clientStart) * 100) / 100,
